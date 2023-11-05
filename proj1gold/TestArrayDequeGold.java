@@ -12,6 +12,8 @@ public class TestArrayDequeGold {
 
         for (int i = 0; i < 100; i += 1) {
             double randomChoice = StdRandom.uniform();
+            Integer testRemove = 0;
+            Integer solRemove = 0;
 
             if (testDeque.isEmpty() || solDeque.isEmpty()) {
                 int addNum = StdRandom.uniform(11);
@@ -38,19 +40,17 @@ public class TestArrayDequeGold {
                 solDeque.addFirst(addNum);
                 history = history + "addFirst(" + addNum + ")\n";
             } else if (randomChoice < 0.75) {
-                testDeque.removeFirst();
-                solDeque.removeFirst();
+                testRemove = testDeque.removeFirst();
+                solRemove = solDeque.removeFirst();
                 history = history + "removeFirst()\n";
             } else {
-                testDeque.removeLast();
-                solDeque.removeLast();
+                testRemove = testDeque.removeLast();
+                solRemove = solDeque.removeLast();
                 history = history + "removeLast()\n";
             }
 
-            for (int j = 0; j < Math.min(solDeque.size(), testDeque.size()); j += 1)
-            {
-                assertEquals(history, solDeque.get(j), testDeque.get(j));
-            }
+            assertEquals(history, solRemove, testRemove);
+
         }
 
     }
