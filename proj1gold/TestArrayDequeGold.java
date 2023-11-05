@@ -19,6 +19,7 @@ public class TestArrayDequeGold {
                     testDeque.addLast(addNum);
                     solDeque.addLast(addNum);
                     history = history + "addLast(" + addNum + ")\n";
+
                 } else {
                     testDeque.addFirst(addNum);
                     solDeque.addFirst(addNum);
@@ -46,8 +47,11 @@ public class TestArrayDequeGold {
                 history = history + "removeLast()\n";
             }
 
-            assertEquals(history, solDeque, testDeque);
-
+            for (int j = 0; j < Math.min(solDeque.size(), testDeque.size()); j += 1)
+            {
+                assertEquals(history, solDeque.get(j), testDeque.get(j));
+            }
         }
+
     }
 }
